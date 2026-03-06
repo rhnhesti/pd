@@ -1,3 +1,4 @@
+import os
 from PIL import Image
 import streamlit as st
 import modules.pelanggan as pelanggan
@@ -10,14 +11,18 @@ st.set_page_config(layout="wide")
 if "menu" not in st.session_state:
     st.session_state.menu = "Home"
 
-logo = Image.open("assets/LOGO.png")
+
+BASE_DIR = os.path.dirname(__file__)
+logo_path = os.path.join(BASE_DIR, "assets", "LOGO.png")
+
+logo = Image.open(logo_path)
 st.sidebar.image(logo, width=200)
 
 st.sidebar.title("📊 Dashboard Analisis Data")
 
 if st.sidebar.button("🏠 Home"):
     st.session_state.menu = "Home"
-    
+
 if st.sidebar.button("🧹 Cleaning Data"):
     st.session_state.menu = "Cleaning"
 
@@ -83,7 +88,8 @@ if st.session_state.menu == "Home":
 
     st.divider()
 
-    st.caption("Sistem dirancang untuk mendukung evaluasi kinerja dan pengambilan keputusan berbasis data.")
+    st.caption(
+        "Sistem dirancang untuk mendukung evaluasi kinerja dan pengambilan keputusan berbasis data.")
 
 elif st.session_state.menu == "Cleaning":
     cleaning.show()
