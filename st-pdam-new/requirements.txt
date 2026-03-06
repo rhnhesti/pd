@@ -1,6 +1,7 @@
 streamlit
 pandas
-plotly
-kmodes
-scikit-learn
 numpy
+plotly
+scikit-learn
+kmodes
+matplotlib
